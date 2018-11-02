@@ -452,9 +452,9 @@
 
 
 \section{Introduction}
-\IEEEPARstart{V}{enturi} flow meters are an industrially proven technology for the metering of multiphase wet gas flow. Although Venturi wet gas correction methods originally borrowed from orifice plate corrections (for example, those by Murdock\cite{Murdock1962} and Chisholm\cite{Chisholm1977}) de Leeuw\cite{DeLeeuw1997} provided an ``empirical correlation...which accurately predicts the effect of the liquid phase on venturi meter readings in wet gas horizontal flow.''  However, to provide this correction to the gas rate, knowledge of the liquid rate is required, expressed through the \acrfull{X}.\\
+\IEEEPARstart{V}{enturi} flow meters are an industrially proven technology for the metering of multiphase wet gas flow. Although Venturi wet gas correction methods originally borrowed from orifice plate corrections (for example, those by Murdock \cite{Murdock1962} and Chisholm \cite{Chisholm1977}) de Leeuw \cite{DeLeeuw1997} provided an ``empirical correlation...which accurately predicts the effect of the liquid phase on Venturi meter readings in wet gas horizontal flow.''  However, to provide this correction to the gas rate, knowledge of the liquid rate is required, expressed through the \acrfull{X}.\\
 
-Within this same paper, de Leeuw indicates that there is ``potential for the pressure loss measurement...to use it as a means to determine the liquid content of the flow, from which the overreacting factor can be determined accordingly. In essence this would form a simple two-phase flow meter.''  This \acrshort{PLR} is a ratio of the overall difference in the pressure across the Venturi meter, $DP_{t}$ to that of the normal Venturi differential pressure, $DP_{v}$  such that:
+Within this same paper, de Leeuw indicates that there is ``potential for the pressure loss measurement...to use it as a means to determine the liquid content of the flow, from which the overreacting factor can be determined accordingly. In essence this would form a simple two-phase flow meter.''  The \acrlong{PLR} is a ratio of the overall difference in the pressure across the Venturi meter, $DP_{t}$ to that of the normal Venturi differential pressure, $DP_{v}$ :
 \begin{equation}
     PLR = \frac{DP_{t}}{DP_{v}}
 \end{equation}
@@ -467,15 +467,50 @@ It should be noted that the total differential pressure may typically be measure
 \label{fig:Venturi}
 \end{figure}
 
+The positioning of the downstream tapping at $6D$ would appear to be due to the assumption that the pressure loss from the DP device would be fully recovered by this point, i.e. that further changes in the pressure would be dominated by the pipe frictional effects rather than the DP meter.  This may have been the expectation for an orifice plate meter, which has the vena contracta downstream of the plate, and therefore the pressure recovery does not start until then.  However, for the Venturi, the walls determine the general shape of the flow, and a tapping at $6D$ may therefore be a technological hangover from an alternative device.  For instance, Solartron ISA use $0D$ \cite{Collins2017PLR1}, believing it to provide similar information on the liquid phase in the flow meter, whilst also providing a higher (and therefore more readily measureable) $DP_{t}$.
 
-\todo[inline]{Why is downstream tapping at 6D?  The pressure loss tapping appears to be at 6D to match that of orifice meters; but they have the vena contracta downstream of the device, such that the pressure recovery starts after that.  With the Venturi, the walls determine the shape of the flow, such that the flow is returned to similar state directly after the Venturi. 6D may therefore be a technological hangover from a different device.} 
-\todo[inline]{Reference for SISA use of 0D, such as \cite{Collins2017PLR1}}
-\todo[inline]{Included angle of cones - 21 degrees for convergent (5.2.3 of \cite{ISOTubes}), 7 to 15 degrees for divergent (5.2.5 of \cite{ISOTubes})}
+This paper only considers the standard design for machined Venturi meters, as given in ISO 5167-4:2003 \cite{ISOTubes}.  As such, the included angle of the inlet cone is set to be $21^{\circ} \pm 1^{\circ}$.  However, the included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583 are drawn only allows for $7^{\circ}$ outlet cones, the data from Solartron ISA only has $15^{\circ}$ outlet cones; overall this latter are shorter, but may have a different pressure recovery envelope.
+
+\todo[inline]{Where and how to introduce the SISA Wet Gas Calibration Database?}
 
 
 \section{Related Work}
 
 \section{Problem}
+
+
+
+
+
+\section{Solution}
+
+\section{Analysis}
+
+\section{Experimentation}
+
+\section{Conclusion}
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Equations from ISO/TR 11583:2012]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+\appendices
+\section{Equations from ISO/TR 11583:2012}
+%Appendix one text goes here.
+
 ISO/TR 11583:2012\cite{2012ISO/TRConduits} (developed from \cite{Reader-Harris2009} and expanded upon in \cite{Reader-Harris2015}) provides a wet gas correction and \acrshort{PLR}-based determination of the liquid content.
 
 \subsection{Determining the wet gas corrected gas mass flow rate $q_{m,gas}$}
@@ -509,11 +544,14 @@ ISO/TR 11583:2012\cite{2012ISO/TRConduits} (developed from \cite{Reader-Harris20
 \end{equation}
 
 \begin{equation}
-    n = max \left( 0.583 - 0.18 \beta^{2} - 0.578 e^{-0.8 \frac{Fr_{gas}}{H}} , 0.392 - 0.18 \beta^{2} \right)
+    n = max \left( 0.583 - 0.18 \beta^{2} - 0.578 e^{-0.8 \frac{Fr_{gas}}{H}}, 0.392 - 0.18 \beta^{2} \right)
 \end{equation}
-
-$H = 1.0$ for hydrocarbon liquid, $H = 1.35$ for water, $H = 0.79$ for liquid water in wet-steam flow.
-
+\\
+$H = 1.0$ for hydrocarbon liquid,\\
+$H = 1.35$ for water,\\
+$H = 0.79$ for liquid water in wet-steam flow.
+\\
+\\
 Limits of use: \\
 \begin{equation*}
 \begin{aligned}
@@ -521,7 +559,7 @@ Limits of use: \\
     0 < X \leq 0.3 \\
     Fr_{gas,th} > 3 \\
     \frac{\rho_{1,gas}}{\rho_{liquid}} > 0.02 \\
-    D = 50 mm
+    D \geq 50 mm
 \end{aligned}
 \end{equation*}
 
@@ -530,7 +568,7 @@ Limits of use: \\
 \subsection{For determining $X$ from the \acrshort{PLR}}
 
 \begin{equation}
-    Y = \frac{\Delta \omega}{\Delta p} - 0.0896 -0.48 \beta^{9}}
+    Y = \frac{\Delta \omega}{\Delta p} - 0.0896 -0.48 \beta^{9}
 \end{equation}
 
 \begin{equation}
@@ -540,7 +578,7 @@ Limits of use: \\
 \begin{equation}
     \frac{Y}{Y_{max}} = 1 - exp \left(-35 X^{0.75} e^{-0.28 \frac{Fr_{gas}}{H}} \right)
 \end{equation}
-
+\\
 Additional limits of use: \\
 \begin{equation*}
 \begin{aligned}
@@ -549,43 +587,6 @@ Additional limits of use: \\
     \frac{\rho_{1,gas}}{\rho_{liquid}} \leq 0.09
 \end{aligned}
 \end{equation*}
-
-
-\section{Solution}
-
-\section{Analysis}
-
-\section{Experimentation}
-
-\section{Conclusion}
-
-
-
-
-
-% if have a single appendix:
-%\appendix[Proof of the Zonklar Equations]
-% or
-%\appendix  % for no appendix heading
-% do not use \section anymore after \appendix, only \section*
-% is possibly needed
-
-% use appendices with more than one appendix
-% then use \section to start each appendix
-% you must declare a \section before using any
-% \subsection or using \label (\appendices by itself
-% starts a section numbered zero.)
-%
-
-%\appendices
-%\section{Proof of the First Zonklar Equation}
-%Appendix one text goes here.
-
-% you can choose not to have a title for an appendix
-% if you want by leaving the argument blank
-%\section{}
-%Appendix two text goes here.
-
 
 % use section* for acknowledgment
 \section*{Acknowledgment}
