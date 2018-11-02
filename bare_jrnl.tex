@@ -460,6 +460,14 @@ Within this same paper, de Leeuw indicates that there is ``potential for the pre
 \end{equation}
 It should be noted that the total differential pressure may typically be measured to one of two points (see figure \ref{fig:Venturi}): either immediately after the divergent cone (i.e. a distance of zero pipe diameters - $0D$ - downstream of the end of the divergent cone, indicated as $DP_{t0}$), or six diameters - $6D$ - further downstream (with the differential pressure given as $DP_{t6}$).
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=3.0in]{Venturi.png}
+\caption[]{ Venturi meter indicating pressure and differential pressure\\instrumentation }
+\label{fig:Venturi}
+\end{figure}
+
+
 \todo[inline]{Why is downstream tapping at 6D?  The pressure loss tapping appears to be at 6D to match that of orifice meters; but they have the vena contracta downstream of the device, such that the pressure recovery starts after that.  With the Venturi, the walls determine the shape of the flow, such that the flow is returned to similar state directly after the Venturi. 6D may therefore be a technological hangover from a different device.} 
 \todo[inline]{Reference for SISA use of 0D, such as \cite{Collins2017PLR1}}
 \todo[inline]{Included angle of cones - 21 degrees for convergent (5.2.3 of \cite{ISOTubes}), 7 to 15 degrees for divergent (5.2.5 of \cite{ISOTubes})}
@@ -468,13 +476,80 @@ It should be noted that the total differential pressure may typically be measure
 \section{Related Work}
 
 \section{Problem}
+ISO/TR 11583:2012\cite{2012ISO/TRConduits} (developed from \cite{Reader-Harris2009} and expanded upon in \cite{Reader-Harris2015}) provides a wet gas correction and \acrshort{PLR}-based determination of the liquid content.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=3.0in]{Venturi.png}
-\caption[]{ Venturi meter indicating pressure and differential pressure\\instrumentation }
-\label{fig:Venturi}
-\end{figure}
+\subsection{Determining the wet gas corrected gas mass flow rate $q_{m,gas}$}
+
+\begin{equation}
+    q_{m,gas} = \frac{C}{\sqrt{1-\beta^{4}}}\varepsilon\frac{\pi d^{2}}{4}\frac{\sqrt{2\Delta p \rho_{1,gas}}}{\phi}
+\end{equation}
+
+\begin{equation}
+    C = 1 - 0.0463 e^{-0.05 Fr_{gas,th}} min \left( 1, \sqrt{\frac{X}{0.016}} \right )
+\end{equation}
+
+\begin{equation}
+    X = \left( \frac{q_{m,liquid}}{q_{m,gas}} \right)\sqrt{\frac{\rho_{1,gas}}{\rho_{liquid}}}
+\end{equation}
+
+\begin{equation}
+    Fr_{gas} = \frac{4q_{m,gas}}{\rho_{1,gas} \pi D^{2} \sqrt{gD}} \sqrt{\frac{\rho_{1,gas}}{\rho_{liquid}-\rho_{1,gas}}}
+\end{equation}
+
+\begin{equation}
+    Fr_{gas,th} = \frac{Fr_{gas}}{\beta ^{2.5}}
+\end{equation}
+
+\begin{equation}
+    \phi = \sqrt{1+C_{Ch}X+X^2}
+\end{equation}
+
+\begin{equation}
+    C_{Ch} = \left( \frac{\rho_{liquid}}{\rho_{1,gas}} \right) ^{n} +\left( \frac{\rho_{1,gas}}{\rho_{liquid}} \right) ^{n}
+\end{equation}
+
+\begin{equation}
+    n = max \left( 0.583 - 0.18 \beta^{2} - 0.578 e^{-0.8 \frac{Fr_{gas}}{H}} , 0.392 - 0.18 \beta^{2} \right)
+\end{equation}
+
+$H = 1.0$ for hydrocarbon liquid, $H = 1.35$ for water, $H = 0.79$ for liquid water in wet-steam flow.
+
+Limits of use: \\
+\begin{equation*}
+\begin{aligned}
+    0.4 \leq \beta \leq 0.75 \\
+    0 < X \leq 0.3 \\
+    Fr_{gas,th} > 3 \\
+    \frac{\rho_{1,gas}}{\rho_{liquid}} > 0.02 \\
+    D = 50 mm
+\end{aligned}
+\end{equation*}
+
+
+
+\subsection{For determining $X$ from the \acrshort{PLR}}
+
+\begin{equation}
+    Y = \frac{\Delta \omega}{\Delta p} - 0.0896 -0.48 \beta^{9}}
+\end{equation}
+
+\begin{equation}
+    Y_{max} = 0.61 exp \left( -11 \left( \frac{\rho_{1,gas}}{\rho_{liquid}} \right) - 0.045 \frac{Fr_{gas}}{H} \right)
+\end{equation}
+
+\begin{equation}
+    \frac{Y}{Y_{max}} = 1 - exp \left(-35 X^{0.75} e^{-0.28 \frac{Fr_{gas}}{H}} \right)
+\end{equation}
+
+Additional limits of use: \\
+\begin{equation*}
+\begin{aligned}
+    Fr_{gas,th} > 4 \\
+    \frac{Fr_{gas}}{H} \leq 5.5 \\
+    \frac{\rho_{1,gas}}{\rho_{liquid}} \leq 0.09
+\end{aligned}
+\end{equation*}
+
 
 \section{Solution}
 
