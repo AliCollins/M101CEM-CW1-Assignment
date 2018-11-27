@@ -386,9 +386,10 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Alistair~Collins\\%
-% \thanks{Development Engineer with Solartron ISA (Ametek Oil \& Gas)}%
-\texttt{alistair.collins@ametek.com}
+\author{Alistair~Collins\\
+Development Engineer with Solartron ISA (Ametek)
+% \thanks{}%
+% \texttt{alistair.collins@ametek.com}
 }
 
 
@@ -447,12 +448,12 @@
 %
 % For peerreview papers, this IEEEtran command inserts a page break and
 % creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
+%\IEEEpeerreviewmaketitle
 
 
 
 \section{Introduction}
-\IEEEPARstart{V}{enturi} flow meters are an industrially proven technology for the metering of multiphase wet gas flow. Although Venturi wet gas correction methods originally borrowed from orifice plate corrections (for example, those by Murdock \cite{Murdock1962} and Chisholm \cite{Chisholm1977}) de Leeuw \cite{DeLeeuw1997} provided an ``empirical correlation...which accurately predicts the effect of the liquid phase on Venturi meter readings in wet gas horizontal flow.''  However, to provide this correction to the gas rate, knowledge of the liquid rate is required, expressed through the \acrfull{X}.\\
+\IEEEPARstart{V}{enturi} flow meters are an industrially proven technology for the metering of multiphase wet gas flow. Although Venturi wet gas correction methods originally borrowed from orifice plate corrections (for example, those by Murdock \cite{Murdock1962} and Chisholm \cite{Chisholm1977}), de Leeuw \cite{DeLeeuw1997} provided an ``empirical correlation...which accurately predicts the effect of the liquid phase on Venturi meter readings in wet gas horizontal flow.''  However, to provide this correction to the gas rate, knowledge of the liquid rate is required, expressed through the \acrfull{X}.\\
 
 Within de Leeuw's paper \cite{DeLeeuw1997}, he indicates that there is ``potential for the pressure loss measurement...to use it as a means to determine the liquid content of the flow, from which the overreacting factor can be determined accordingly. In essence this would form a simple two-phase flow meter.''  The \acrlong{PLR} is a ratio of the overall difference in the pressure across the Venturi meter, $DP_{t}$ to that of the normal Venturi differential pressure, $DP_{v}$ :
 \begin{equation}
@@ -469,24 +470,27 @@ The total differential pressure may be measured to any point downstream of the V
 
 The positioning of the downstream tapping at $6D$ would appear to be due to the assumption that the pressure loss from the DP device would be fully recovered by this point, i.e. that further changes in the pressure would be dominated by the pipe frictional effects rather than the DP meter.  This may have been the expectation for an orifice plate meter, which has the vena contracta downstream of the plate, and therefore the pressure recovery does not start until then.  However, for the Venturi, the walls determine the general shape of the flow, and a tapping at $6D$ may therefore be a technological hangover from an alternative device.  For instance, Solartron ISA use $0D$ \cite{Collins2017PLR1}, believing it to provide similar information on the liquid phase in the flow meter, whilst also providing a higher (and therefore more readily measureable) $DP_{t}$.
 
+\todo[inline]{Data from Richard Steven's thesis work - 0D and 6D - limited comparison}
+
 This work is generally restricted to the standard design for machined Venturi meters, as given in ISO 5167-4:2003 \cite{ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$.  However, the included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
 
 \section{Related Work}
+As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potential for the \acrshort{PLR} to determine the liquid content of the wet gas flow, but was unable to provide an equation to formalize this relationship.  
 
+Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, \cite{ISOTubes}, and is more fully detailed in \cite{Reader-Harris2015}.  
 
+ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data provided at different Venturi beta ratios.  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
 
-\todo[inline]{de Leeuw 1997 - didn't have an equation for PLR}
-\todo[inline]{MRH/Graham 2009, ISO/TR 11583:2012 and MRH book...}
-\todo[inline]{...leading to de Leeuw et al. 2011...}
+However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven2018OrificeProblem} noting that the \acrshort{PLR} could be a ``solution to the `Ill-posed' problem'', as a ``...wet gas flow’s liquid loading can be predicted via its relationship with the Venturi meter’s measureable Pressure Loss Ratio''.  Similarly, Pinguet \cite{Pinguet2018ExtensiveConditions} notes the use of the recovery pressure measurement as technique for determining the liquid loading, referencing the commerical implementation of Solartron ISA's Dualstream meters.
+
 \todo[inline]{ Other works - Chinese? }
-\todo[inline]{2018 NSFMW - Steven "PLR...solution to the ill-posed problem"?}
-\todo[inline]{2018 NSFMW - Pinguet - Venturi meter performance in field conditions [section 8]}
 
 
 \section{Problem}
 
 \todo[inline]{Equations for PLR in standard - do they have the right sort of form?  Can the performance of a similar system demonstrate whether they are the right sort of solution, with the right key characteristics?}
-
+\todo[inline]{\cite{DeLeeuw2011} Fig.11 - what about beta and size at dry gas conditions?}
+\todo[inline]{\cite{DeLeeuw2011} 3-phase wet gas data}
 
 \section{Solution}
 
@@ -521,6 +525,8 @@ This work is generally restricted to the standard design for machined Venturi me
 
 \section{Conclusion}
 
+Whilst the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} is acknowledged as an initial step to a complete formulation for determining multiphase wet gas flow rates by using the Venturi \acrfull{PLR}, this paper indicates that further work is required to provide a generalized implementation.
+
 
 
 
@@ -539,7 +545,7 @@ This work is generally restricted to the standard design for machined Venturi me
 % starts a section numbered zero.)
 %
 \appendices
-\section{Equations from ISO/TR 11583:2012}
+\section{Equations from ISO/TR 11583:2012} \label{11583 Equations}
 %Appendix one text goes here.
 
 ISO/TR 11583:2012\cite{2012ISO/TRConduits} (developed from \cite{Reader-Harris2009} and expanded upon in \cite{Reader-Harris2015}) provides a wet gas correction and \acrshort{PLR}-based determination of the liquid content.
@@ -621,7 +627,7 @@ Additional limits of use: \\
 
 % use section* for acknowledgment
 \section*{Acknowledgment}
-The author would like to thank his supervision team at Coventry University (Erdal Turkbeyler, Seyed Shariatipour and Alban Potherat), advisor Hoi Yeung, and Steve Clark of Solartron ISA (Ametek). 
+The author would like to thank his supervision team at Coventry University (Erdal Turkbeyler, Seyed Shariatipour, Alban Potherat and Hoi Yeung), and Steve Clark and Mark Tudge of Solartron ISA (Ametek). 
 
 
 % Can use something like this to put references on a page
