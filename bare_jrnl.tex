@@ -354,6 +354,8 @@
 %\usepackage[font=footnotesize]{subcaption}
 \usepackage{todonotes}
 
+\usepackage{color,soul}  % Allows for text highlighting
+
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).         ***
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
@@ -459,6 +461,9 @@ Within de Leeuw's paper \cite{DeLeeuw1997}, he indicates that there is ``potenti
 \begin{equation}
     PLR = \frac{DP_{t}}{DP_{v}}
 \end{equation}
+
+\todo[inline]{Should the discussion of 0D vs 6D be moved lower in the paper?}
+
 The total differential pressure may be measured to any point downstream of the Venturi, but the downstream tapping location (see figure \ref{fig:Venturi}) is typically either six pipe diameters - $6D$ - downstream of the end of the divergent cone (typical for standard meters, with the differential pressure given as $DP_{t6}$), or immediately after the divergent cone (i.e. a distance of zero pipe diameters - $0D$ - with a differential pressure of $DP_{t0}$, which is the most common downstream tapping location for Solartron ISA's Dualstream 1 meters).
 
 \begin{figure}[h]
@@ -472,32 +477,45 @@ The positioning of the downstream tapping at $6D$ would appear to be due to the 
 
 \todo[inline]{Data from Richard Steven's thesis work - 0D and 6D - limited comparison}
 
-This work is generally restricted to the standard design for machined Venturi meters, as given in ISO 5167-4:2003 \cite{ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$.  However, the included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
+This work is generally restricted to the standard design for machined Venturi meters, as given in ISO 5167-4:2003 \cite{ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$.  However, the included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have nominally $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
 
 \section{Related Work}
 As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potential for the \acrshort{PLR} to determine the liquid content of the wet gas flow, but was unable to provide an equation to formalize this relationship.  
 
 Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, \cite{ISOTubes}, and is more fully detailed in \cite{Reader-Harris2015}.  
 
-ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data provided at different Venturi beta ratios.  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
+ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and beta ratios than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
 
-However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven2018OrificeProblem} noting that the \acrshort{PLR} could be a ``solution to the `Ill-posed' problem'', as a ``...wet gas flow’s liquid loading can be predicted via its relationship with the Venturi meter’s measureable Pressure Loss Ratio''.  Similarly, Pinguet \cite{Pinguet2018ExtensiveConditions} notes the use of the recovery pressure measurement as technique for determining the liquid loading, referencing the commerical implementation of Solartron ISA's Dualstream meters.
+However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven2018OrificeProblem} noting that the \acrshort{PLR} could be a ``solution to the `Ill-posed' problem'', as a ``...wet gas flow’s liquid loading can be predicted via its relationship with the Venturi meter’s measureable Pressure Loss Ratio''.  Similarly, Pinguet \cite{Pinguet2018ExtensiveConditions} notes the use of the recovery pressure measurement as technique for determining the liquid loading, referencing the commercial implementation of Solartron ISA's Dualstream meters.
 
 \todo[inline]{ Other works - Chinese? }
 
 
 \section{Problem}
 
-\todo[inline]{Equations for PLR in standard - do they have the right sort of form?  Can the performance of a similar system demonstrate whether they are the right sort of solution, with the right key characteristics?}
-\todo[inline]{\cite{DeLeeuw2011} Fig.11 - what about beta and size at dry gas conditions?}
-\todo[inline]{\cite{DeLeeuw2011} 3-phase wet gas data}
+Whilst ISO/TR~11583:2012 is publicly available, limited literature has critically reviewed the form and accuracy of the equations presented in this ISO Technical Report for the use of \acrlong{PLR} with Venturi meters.  The criticisms of de Leeuw, Steven and van Maanen \cite{DeLeeuw2011} are investigated, to see whether the equations have the right sort of form with the right characteristics.
+
+Firstly, the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios. From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y = 0$) is only proportional to beta; there are no terms for the meter size, gas to liquid density ratio, or gas velocity (which the gas densiometric Froude number, $F_{rg}$, represents in a non-dimensional manner).
+
+Secondly, these equations define the curves for \acrshort{PLR} as a plateauing exponential form for increasing liquid content, as given by the Lockhart-Martinelli number, $X$, (for constant density ratio, velocity and water to liquid ratio).
+  
+Thirdly, three-phase data (flow of gas, condensate and water together) is presented through the $H$ parameter. 
+
+\todo[inline]{Doe the performance of a similar system demonstrate whether they are the right sort of solution, with the right key characteristics?}
 
 \section{Solution}
 
-\todo[inline]{Introduce the SISA Wet Gas Calibration Database}
-\todo[inline]{How will the comparison take place?}
-\todo[inline]{Assumptions for H}
+Solartron ISA have an extensive wet gas calibration database for Venturi meters, which has previously been used to assess the performance of publicly available standard wet gas correlation algorithms \cite{Collins2015}.  Of relevance to this paper are \hl{XXX} wet gas calibrations (consisting of \hl{XXX} test points in total, for \hl{XXX} flow meters between 3" and 10") for Dualstream 1 products which have a downstream tapping at $0D$ as previously described.
 
+
+\todo[inline]{How will the comparison take place?}
+
+As per previous work \cite{Collins2015}, where the $H$ parameter is required in the ISO/TR~11583:2012  \cite{2012ISO/TRConduits} equations, the following formulation is used:
+
+\begin{equation}
+H = 1.0 + 0.35 \frac{Q_{mw}}{Q_{ml}}    
+\end{equation}
+This makes the correct assumption that none of the data in the Solartron ISA database is for steam flow, and assumes a nominal straight line fit between the liquid being all hydrocarbon (where the water mass flow rate $Q_{mw}$ is zero) and all water.
 
 \section{Experimentation}
 
@@ -548,7 +566,7 @@ Whilst the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} is acknowledged a
 \section{Equations from ISO/TR 11583:2012} \label{11583 Equations}
 %Appendix one text goes here.
 
-ISO/TR 11583:2012\cite{2012ISO/TRConduits} (developed from \cite{Reader-Harris2009} and expanded upon in \cite{Reader-Harris2015}) provides a wet gas correction and \acrshort{PLR}-based determination of the liquid content.
+ISO/TR 11583:2012\cite{2012ISO/TRConduits} (developed from \cite{Reader-Harris2009} and expanded upon in \cite{Reader-Harris2015}) provides a wet gas correction and \acrshort{PLR}-based determination of the liquid content.  A summary of the formulation is given below to allow for ready comparison in this paper.
 
 \subsection{Determining the wet gas corrected gas mass flow rate $q_{m,gas}$}
 
@@ -605,6 +623,7 @@ Limits of use: \\
 \subsection{For determining $X$ from the \acrshort{PLR}}
 
 \begin{equation}
+\label{eq:11583_Y}
     Y = \frac{\Delta \omega}{\Delta p} - 0.0896 -0.48 \beta^{9}
 \end{equation}
 
