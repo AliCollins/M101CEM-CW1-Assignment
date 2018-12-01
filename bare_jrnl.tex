@@ -429,7 +429,7 @@ Development Engineer with Solartron ISA (Ametek)
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-\acrfull{PLR} of a Venturi meter provides an industrial-suitable method for quantifying the liquid content of high \acrshort{GVF} multiphase flows.  We compared key characteristics of \acrshort{PLR} seen in experimental wet gas test data from different flow loops with the algorithm of ISO/TR~11583:2012. Although general similarities of the \acrshort{PLR} for increasing liquid content shape were noted, (we are expecting that) errors were noted. The results indicate that further improvements can be made in the modelling of \acrshort{PLR} in multi-liquid wet gas systems.
+\acrfull{PLR} of a Venturi meter provides an industrial-suitable method for quantifying the liquid content of high \acrshort{GVF} multiphase flows.  We compared key characteristics of \acrshort{PLR} seen in experimental wet gas test data from different flow loops with the algorithm of ISO/TR~11583:2012. Although general similarities of the \acrshort{PLR} for increasing liquid content shape were noted, \hl{(we are expecting that)} errors were noted. The results indicate that further improvements can be made in the modelling of \acrshort{PLR} in multi-liquid wet gas systems.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -462,27 +462,13 @@ Within de Leeuw's paper \cite{DeLeeuw1997}, he indicates that there is ``potenti
     PLR = \frac{DP_{t}}{DP_{v}}
 \end{equation}
 
-\todo[inline]{Should the discussion of 0D vs 6D be moved lower in the paper?}
 
-The total differential pressure may be measured to any point downstream of the Venturi, but the downstream tapping location (see figure \ref{fig:Venturi}) is typically either six pipe diameters - $6D$ - downstream of the end of the divergent cone (typical for standard meters, with the differential pressure given as $DP_{t6}$), or immediately after the divergent cone (i.e. a distance of zero pipe diameters - $0D$ - with a differential pressure of $DP_{t0}$, which is the most common downstream tapping location for Solartron ISA's Dualstream 1 meters).
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=3.0in]{Venturi.png}
-\caption[]{ Venturi meter indicating pressure and differential pressure\\instrumentation }
-\label{fig:Venturi}
-\end{figure}
-
-The positioning of the downstream tapping at $6D$ would appear to be due to the assumption that the pressure loss from the DP device would be fully recovered by this point, i.e. that further changes in the pressure would be dominated by the pipe frictional effects rather than the DP meter.  This may have been the expectation for an orifice plate meter, which has the vena contracta downstream of the plate, and therefore the pressure recovery does not start until then.  However, for the Venturi, the walls determine the general shape of the flow, and a tapping at $6D$ may therefore be a technological hangover from an alternative device.  For instance, Solartron ISA use $0D$ \cite{Collins2017PLR1}, believing it to provide similar information on the liquid phase in the flow meter, whilst also providing a higher (and therefore more readily measureable) $DP_{t}$.
-
-\todo[inline]{Data from Richard Steven's thesis work - 0D and 6D - limited comparison}
-
-This work is generally restricted to the standard design for machined Venturi meters, as given in ISO 5167-4:2003 \cite{2003ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$.  However, the included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have nominally $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
+This paper only uses data for the standard design for machined Venturi meters as given in ISO 5167-4:2003 \cite{2003ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$; however, the standard included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have nominally $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
 
 \section{Related Work}
 As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potential for the \acrshort{PLR} to determine the liquid content of the wet gas flow, but was unable to provide an equation to formalize this relationship.  
 
-Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, \cite{2003ISOTubes}, and is more fully detailed in \cite{Reader-Harris2015}.  
+Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, ISO/TR~11583:2012~\cite{2003ISOTubes}, and is expanded upon in \cite{Reader-Harris2015}.  
 
 ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and beta ratios than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
 
@@ -495,18 +481,30 @@ However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven20
 
 Whilst ISO/TR~11583:2012 is publicly available, limited literature has critically reviewed the form and accuracy of the equations presented in this ISO Technical Report for the use of \acrlong{PLR} with Venturi meters.  The criticisms of de Leeuw, Steven and van Maanen \cite{DeLeeuw2011} are investigated, to see whether the equations have the right sort of form with the right characteristics.
 
-Firstly, the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios. From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y = 0$) is only proportional to beta; there are no terms for the meter size, gas to liquid density ratio, or gas velocity (which the gas densiometric Froude number, $F_{rg}$, represents in a non-dimensional manner).
+Firstly, the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios. From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y=0$) is only proportional to beta; there are no terms for the meter size, gas-to-liquid density ratio, or gas velocity (which the gas densiometric Froude number, $F_{rg}$, represents in a non-dimensional manner).
 
-Secondly, these equations define the curves for \acrshort{PLR} as a plateauing exponential form for increasing liquid content, as given by the Lockhart-Martinelli number, $X$, (for constant density ratio, velocity and water to liquid ratio).
+Secondly, these equations define the curves for \acrshort{PLR} as a plateauing exponential form for increasing liquid content, as given by the Lockhart-Martinelli number, $X$, (for constant density ratio, velocity and water-to-liquid ratio).
   
 Thirdly, three-phase data (flow of gas, condensate and water together) is presented through the $H$ parameter. 
 
-\todo[inline]{Doe the performance of a similar system demonstrate whether they are the right sort of solution, with the right key characteristics?}
+\todo[inline]{Does the performance of a similar system demonstrate whether they are the right sort of solution, with the right key characteristics?}
 
 \section{Solution}
 
-Solartron ISA have an extensive wet gas calibration database for Venturi meters, which has previously been used to assess the performance of publicly available standard wet gas correlation algorithms \cite{Collins2015}.  Of relevance to this paper are 28 wet gas calibration projects (consisting of 5,418 test points in total, for 29 flow meters between 3" and 10") for Dualstream 1 products which have a downstream tapping at $0D$ as previously described.
+Solartron ISA have an extensive wet gas calibration database for Venturi meters, which has previously been used to assess the performance of publicly available standard wet gas correlation algorithms \cite{Collins2015}.  Of relevance to this paper are 28 wet gas calibration projects (consisting of 5,418 test points in total, for 29 flow meters between 3" and 10") for Dualstream~1 products which have a downstream tapping at $0D$.
 
+The total differential pressure may be measured to any point downstream of the Venturi, but the downstream tapping location (see figure \ref{fig:Venturi}) is generally either six pipe diameters - $6D$ - downstream of the end of the divergent cone (typical for standard meters, with the differential pressure given as $DP_{t6}$), or immediately after the divergent cone (i.e. a distance of zero pipe diameters - $0D$ - with a differential pressure of $DP_{t0}$, which is the downstream tapping location for Solartron ISA's Dualstream 1 meters).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=3.0in]{Venturi.png}
+\caption[]{ Venturi meter indicating pressure and differential pressure\\instrumentation }
+\label{fig:Venturi}
+\end{figure}
+
+The positioning of the downstream tapping at $6D$ would appear to be due to the assumption that the pressure loss from the DP device would be fully recovered by this point, i.e. that further changes in the pressure would be dominated by the pipe frictional effects rather than the DP meter.  This may have been the expectation for an orifice plate meter, which has the vena contracta downstream of the plate, and therefore the pressure recovery does not start until then.  However, for the Venturi, the walls determine the general shape of the flow, and a tapping at $6D$ may therefore be a technological hangover from an alternative device.  For instance, Solartron ISA use $0D$ \cite{Collins2017PLR1}, believing it to provide similar information on the liquid phase in the flow meter, whilst also providing a higher (and therefore more readily measureable) $DP_{t}$.
+
+\todo[inline]{Data from Richard Steven's thesis work - 0D and 6D - limited comparison}
 
 \todo[inline]{How will the comparison take place?}
 
@@ -526,7 +524,7 @@ This uses the water-to-liquid volume ratio (WLR), and implies that the liquid fu
 
 \section{Experimentation}
 
-Despite the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}.
+Despite the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}. As the ISO equations for PLR are based only on 4" meters (with beta ratios of 0.4, 0.6 and 0.75 - see 11.3.2 in \cite{Reader-Harris2015}), this formulation is therefore unable to allow for this significant factor.
 
 \begin{figure}[h]
 \centering
@@ -550,10 +548,13 @@ Despite the key differences between the Venturi meters used for ISO/TR~11583:201
 
 
 
-\section{Conclusion}
+\section{Conclusions}
 
 Whilst the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} is acknowledged as an initial step to a complete formulation for determining multiphase wet gas flow rates by using the Venturi \acrfull{PLR}, this paper indicates that further work is required to provide a generalized implementation.
 
+Although the Solartron ISA wet gas calibration database uses Venturi meters with a greater outlet cone angle and an alternative total DP tapping location, this data has indicated a number of potential concerns.
+
+With no clear dependence upon the meter size, the PLR equations from ISO/TR~11583:2012 appear insufficient to adequately represent the process data.
 
 
 
