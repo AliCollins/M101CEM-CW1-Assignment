@@ -522,10 +522,11 @@ H = min \left( 1.0 + 0.8 \frac{Q_{vw}}{Q_{vl}}, 1.35 \right)
 
 This uses the water-to-liquid volume ratio (WLR), and implies that the liquid fully behaves like water where $WLR~\geq~0.4375$, where this is attributed to the liquid mixture in this case having the surface tension of water.
 
+
 \section{Experimentation}
 
+\subsection{Initial analysis}
 Despite the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}. As the ISO equations for PLR are based only on 4" meters (with beta ratios of 0.4, 0.6 and 0.75 - see 11.3.2 in \cite{Reader-Harris2015}), this formulation is therefore unable to allow for this significant factor.
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=3.5in]{PLR2.png}
@@ -534,9 +535,30 @@ Despite the key differences between the Venturi meters used for ISO/TR~11583:201
 \end{figure}
 
 
+\todo[inline]{Naively adjusted parameters for better fit - does the general shape of the equations work?}
 
-\todo[inline]{Adjusted parameters for better fit - does the general shape of the equations work?}
-\todo[inline]{Dry gas calibration points}
+
+\subsection{Dry gas calibration data}
+The \acrshort{PLR} for dry gas data, according to ISO/TR~11583:2012, should only be proportional to beta, as per equation \ref{eq:11583_Y}.  The Solartron ISA database was used to investigate this assumption, with 383 dry gas points taken as part of wet gas tests available for analysis.  
+
+Figures \ref{fig:4inchDry} and \ref{fig:6inchDry}, where each chart are at a fixed size and beta ratio, show that the dry gas PLR varies significantly, in contradiction to the ISO report.  The PLR value is seen to depend on the type of gas (nitrogen, air and natural gas data are shown), the gas density, and the gas Froude number.  Clear trends (beyond higher gas Froude numbers tend to have higher PLR) are difficult to determine.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=3.5in]{{"4inch dry"}.png}
+\caption[]{ Dry gas data for 4" $0.55\beta$ Venturi (Nitrogen:~filled~circle, Natural~Gas:~empty~square) }
+\label{fig:4inchDry}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=3.5in]{{"6inch dry"}.png}
+\caption[]{ Dry gas data for 6" $0.55\beta$ Venturi (Nitrogen:~filled~circle, Air:~+, Natural~Gas:~empty~square) }
+\label{fig:6inchDry}
+\end{figure}
+
+
+
 \todo[inline]{Meter (by size and beta) review}
 
 
@@ -554,7 +576,7 @@ Whilst the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} is acknowledged a
 
 Although the Solartron ISA wet gas calibration database uses Venturi meters with a greater outlet cone angle and an alternative total DP tapping location, this data has indicated a number of potential concerns.
 
-With no clear dependence upon the meter size, the PLR equations from ISO/TR~11583:2012 appear insufficient to adequately represent the process data.
+With no clear dependence upon the meter size, the PLR equations from ISO/TR~11583:2012 appear insufficient to adequately represent the process data.  Even at dry gas conditions, the complexities of the meter size, gas Froude number and gas density do not appear to be adequately represented. 
 
 
 
