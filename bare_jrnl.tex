@@ -340,9 +340,11 @@
 % *** GLOSSARIES AND ACRONYMNS ***
 \usepackage[utf8]{inputenc}
 \usepackage[acronym]{glossaries}
-
 \makeglossaries
 
+\newacronym{beta}{$\beta$}{Ratio of Venturi throat diameter to pipe diameter}
+\newacronym{d}{d}{Venturi throat diameter}
+\newacronym{D}{D}{Pipe diameter}
 \newacronym{GMF}{GMF}{Gas Mass Fraction} 
 \newacronym{GVF}{GVF}{Gas Volume Fraction}
 \newacronym{PLR}{PLR}{Pressure Loss Ratio}
@@ -470,7 +472,7 @@ As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potentia
 
 Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, ISO/TR~11583:2012~\cite{2003ISOTubes}, and is expanded upon in \cite{Reader-Harris2015}.  
 
-ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and beta ratios than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
+ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and \acrshort{beta} values than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
 
 However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven2018OrificeProblem} noting that the \acrshort{PLR} could be a ``solution to the `Ill-posed' problem'', as a ``...wet gas flow’s liquid loading can be predicted via its relationship with the Venturi meter’s measureable Pressure Loss Ratio''.  Similarly, Pinguet \cite{Pinguet2018ExtensiveConditions} notes the use of the recovery pressure measurement as technique for determining the liquid loading, referencing the commercial implementation of Solartron ISA's Dualstream meters.
 
@@ -493,11 +495,11 @@ Thirdly, three-phase data (flow of gas, condensate and water together) is presen
 
 Solartron ISA have an extensive wet gas calibration database for Venturi meters, which has previously been used to assess the performance of publicly available standard wet gas correlation algorithms \cite{Collins2015}.  Of relevance to this paper are 28 wet gas calibration projects (consisting of 5,418 test points in total, for 29 flow meters between 3" and 10") for Dualstream~1 products which have a downstream tapping at $0D$.
 
-The total differential pressure may be measured to any point downstream of the Venturi, but the downstream tapping location (see figure \ref{fig:Venturi}) is generally either six pipe diameters - $6D$ - downstream of the end of the divergent cone (typical for standard meters, with the differential pressure given as $DP_{t6}$), or immediately after the divergent cone (i.e. a distance of zero pipe diameters - $0D$ - with a differential pressure of $DP_{t0}$, which is the downstream tapping location for Solartron ISA's Dualstream 1 meters).
+The total differential pressure may be measured to any point downstream of the Venturi, but the downstream tapping location (see figure \ref{fig:Venturi}) is generally either six pipe diameters - $6$\acrshort{D} - downstream of the end of the divergent cone (typical for standard meters, with the differential pressure given as $DP_{t6}$), or immediately after the divergent cone (i.e. a distance of zero pipe diameters - $0D$ - with a differential pressure of $DP_{t0}$, which is the downstream tapping location for Solartron ISA's Dualstream 1 meters).
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=3.0in]{Venturi.png}
+\includegraphics[width=3.4in]{Venturi.png}
 \caption[]{ Venturi meter indicating pressure and differential pressure\\instrumentation }
 \label{fig:Venturi}
 \end{figure}
@@ -529,7 +531,7 @@ This uses the water-to-liquid volume ratio (WLR), and implies that the liquid fu
 Despite the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}. As the ISO equations for PLR are based only on 4" meters (with beta ratios of 0.4, 0.6 and 0.75 - see 11.3.2 in \cite{Reader-Harris2015}), this formulation is therefore unable to allow for this significant factor.
 \begin{figure}[h]
 \centering
-\includegraphics[width=3.5in]{PLR2.png}
+\includegraphics[width=3.4in]{PLR2.png}
 \caption[]{ Measured PLR vs ISO/TR 11583, coloured by meter size }
 \label{fig:PLR2}
 \end{figure}
@@ -545,14 +547,14 @@ Figures \ref{fig:4inchDry} and \ref{fig:6inchDry}, where each chart are at a fix
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=3.5in]{{"4inch dry"}.png}
+\includegraphics[width=3.4in]{{"4inch dry"}.png}
 \caption[]{ Dry gas data for 4" $0.55\beta$ Venturi (Nitrogen:~filled~circle, Natural~Gas:~empty~square) }
 \label{fig:4inchDry}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=3.5in]{{"6inch dry"}.png}
+\includegraphics[width=3.4in]{{"6inch dry"}.png}
 \caption[]{ Dry gas data for 6" $0.55\beta$ Venturi (Nitrogen:~filled~circle, Air:~+, Natural~Gas:~empty~square) }
 \label{fig:6inchDry}
 \end{figure}
@@ -577,6 +579,11 @@ Whilst the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} is acknowledged a
 Although the Solartron ISA wet gas calibration database uses Venturi meters with a greater outlet cone angle and an alternative total DP tapping location, this data has indicated a number of potential concerns.
 
 With no clear dependence upon the meter size, the PLR equations from ISO/TR~11583:2012 appear insufficient to adequately represent the process data.  Even at dry gas conditions, the complexities of the meter size, gas Froude number and gas density do not appear to be adequately represented. 
+
+% Glossary
+\setglossarysection{section}
+%\printglossary
+\printglossary[type=\acronymtype,nonumberlist,title=Glossary of Terms]
 
 
 
@@ -687,9 +694,6 @@ The author would like to thank his supervision team at Coventry University (Erda
   \newpage
 \fi
 
-
-% Glossary
-\printglossary[type=\acronymtype,nonumberlist]
 
 
 % trigger a \newpage just before the given reference
