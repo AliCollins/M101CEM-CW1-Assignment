@@ -343,12 +343,19 @@
 \makeglossaries
 
 \newacronym{beta}{$\beta$}{Ratio of Venturi throat diameter to pipe diameter}
-\newacronym{d}{d}{Venturi throat diameter}
-\newacronym{D}{D}{Pipe diameter}
-\newacronym{GMF}{GMF}{Gas Mass Fraction} 
-\newacronym{GVF}{GVF}{Gas Volume Fraction}
-\newacronym{PLR}{PLR}{Pressure Loss Ratio}
-\newacronym{X}{X}{Lockhart-Martinelli parameter}
+\newacronym{expans}{$\varepsilon$}{Gas Expansibility Factor (see \cite{2003ISOTubes} section 5.6)}
+\newacronym{RHOG}{$\rho_{1,gas}$}{Gas density at upstream tapping}
+\newacronym{RHOL}{$\rho_{liquid}$}{Liquid density at upstream tapping}
+\newacronym{WGC}{$\phi$}{Wet Gas Correction (WGC) parameter}
+\newacronym{d}{$d$}{Venturi throat diameter}
+\newacronym{D}{$D$}{Pipe diameter}
+\newacronym{Frg}{$Fr_{gas}$}{Gas Froude Number, a dimensionless manner of representing gas velocity, $Fr_{gas}=\frac{v_{sg}}{\sqrt{gD}}\sqrt{\frac{\rho_{1,gas}}{\rho_{liquid}-\rho_{1,gas}}}$}
+\newacronym{GMF}{$GMF$}{Gas Mass Fraction} 
+\newacronym{GVF}{$GVF$}{Gas Volume Fraction}
+\newacronym{H}{$H$}{H parameter from ISO/TR~11583:2012 \cite{2012ISO/TRConduits}}
+\newacronym{PLR}{$PLR$}{Pressure Loss Ratio}
+\newacronym{Q}{$Q$}{Flow rate, where $Q_{mg}$ is the gas mass flow rate, $Q_{ml}$ is the liquid mass flow rate, $Q_{vg}$ is the gas actual volume flow rate, $Q_{vl}$ is the liquid actual volume flow rate}
+\newacronym{X}{$X$}{Lockhart-Martinelli parameter, $X=\frac{Q_{ml}}{Q_{mg}}\sqrt{\frac{\rho_{1,gas}}{\rho_{liquid}}}$}
 
 
 
@@ -470,7 +477,7 @@ This paper only uses data for the standard design for machined Venturi meters as
 \section{Related Work}
 As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potential for the \acrshort{PLR} to determine the liquid content of the wet gas flow, but was unable to provide an equation to formalize this relationship.  
 
-Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, ISO/TR~11583:2012~\cite{2003ISOTubes}, and is expanded upon in \cite{Reader-Harris2015}.  
+Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction term, \acrshort{WGC}, through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for $C$ and $n$.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. This work led to an ISO technical report, ISO/TR~11583:2012~\cite{2003ISOTubes}, and is expanded upon in \cite{Reader-Harris2015}.  
 
 ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and \acrshort{beta} values than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water to liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
 
@@ -483,7 +490,7 @@ However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven20
 
 Whilst ISO/TR~11583:2012 is publicly available, limited literature has critically reviewed the form and accuracy of the equations presented in this ISO Technical Report for the use of \acrlong{PLR} with Venturi meters.  The criticisms of de Leeuw, Steven and van Maanen \cite{DeLeeuw2011} are investigated, to see whether the equations have the right sort of form with the right characteristics.
 
-Firstly, the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios. From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y=0$) is only proportional to beta; there are no terms for the meter size, gas-to-liquid density ratio, or gas velocity (which the gas densiometric Froude number, $F_{rg}$, represents in a non-dimensional manner).
+Firstly, the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios. From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y=0$) is only proportional to beta; there are no terms for the meter size, gas-to-liquid density ratio, or gas velocity (which the gas densiometric Froude number, \acrshort{Frg}, represents in a non-dimensional manner).
 
 Secondly, these equations define the curves for \acrshort{PLR} as a plateauing exponential form for increasing liquid content, as given by the Lockhart-Martinelli number, $X$, (for constant density ratio, velocity and water-to-liquid ratio).
   
@@ -510,7 +517,7 @@ The positioning of the downstream tapping at $6D$ would appear to be due to the 
 
 \todo[inline]{How will the comparison take place?}
 
-Previous work \cite{Collins2015} had used the following formulation for the $H$ parameter in the ISO/TR~11583:2012  \cite{2012ISO/TRConduits} equations:
+Previous work \cite{Collins2015} had used the following formulation for the \acrshort{H} parameter in the ISO/TR~11583:2012  \cite{2012ISO/TRConduits} equations:
 
 \begin{equation}
 H = 1.0 + 0.35 \frac{Q_{mw}}{Q_{ml}}    
@@ -582,6 +589,7 @@ With no clear dependence upon the meter size, the PLR equations from ISO/TR~1158
 
 % Glossary
 \setglossarysection{section}
+\glsnogroupskiptrue
 %\printglossary
 \printglossary[type=\acronymtype,nonumberlist,title=Glossary of Terms]
 
