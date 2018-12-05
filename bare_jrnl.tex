@@ -155,13 +155,13 @@
 
 % *** MATH PACKAGES ***
 %
-%\usepackage{amsmath}
+% \usepackage{amsmath}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics.
 %
 % Note that the amsmath package sets \interdisplaylinepenalty to 10000
 % thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
+% \interdisplaylinepenalty=2500
 % after loading amsmath to restore such page breaks as IEEEtran.cls normally
 % does. amsmath.sty is already installed on most LaTeX systems. The latest
 % version and documentation can be obtained at:
@@ -350,10 +350,10 @@
 \newacronym{d}{$d$}{Venturi throat diameter}
 \newacronym{D}{$D$}{Pipe diameter}
 \newacronym{Frg}{$Fr_{gas}$}{Gas Froude Number, a dimensionless manner of representing gas velocity, $Fr_{gas}=\frac{v_{sg}}{\sqrt{gD}}\sqrt{\frac{\rho_{1,gas}}{\rho_{liquid}-\rho_{1,gas}}}$}
-\newacronym{GMF}{$GMF$}{Gas Mass Fraction} 
-\newacronym{GVF}{$GVF$}{Gas Volume Fraction}
+\newacronym{GMF}{GMF}{Gas Mass Fraction} 
+\newacronym{GVF}{GVF}{Gas Volume Fraction}
 \newacronym{H}{$H$}{H parameter from ISO/TR~11583:2012 \cite{2012ISO/TRConduits}}
-\newacronym{PLR}{$PLR$}{Pressure Loss Ratio}
+\newacronym{PLR}{PLR}{Pressure Loss Ratio}
 \newacronym{Q}{$Q$}{Flow rate, where $Q_{mg}$ is the gas mass flow rate, $Q_{ml}$ is the liquid mass flow rate, $Q_{vg}$ is the gas actual volume flow rate, $Q_{vl}$ is the liquid actual volume flow rate}
 \newacronym{X}{$X$}{Lockhart-Martinelli parameter, $X=\frac{Q_{ml}}{Q_{mg}}\sqrt{\frac{\rho_{1,gas}}{\rho_{liquid}}}$}
 
@@ -384,7 +384,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Evaluating characteristics of a Pressure Loss Ratio algorithm for wet gas Venturi meters
+\title{Evaluating characteristics of a Pressure Loss Ratio algorithm for horizontal wet gas Venturi meters
 }
 %
 %
@@ -438,40 +438,43 @@ Development Engineer with Solartron ISA (Ametek)
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-The Pressure Loss Ratio (PLR) from a Venturi meter provides an industrially robust method for quantifying the liquid content of high GVF multiphase flows. Key characteristics of the PLR algorithm from ISO/TR~11583:2012 are compared to experimental wet gas test data. Although general similarities for increasing liquid content shape were noted, critical differences are noted. Further improvements are suggested, particularly for multi-liquid wet gas systems.
+The Pressure Loss Ratio from a Venturi meter provides an industrially robust method for quantifying the liquid content of high GVF multiphase flows. Key characteristics of the PLR algorithm from ISO/TR~11583:2012 are compared to experimental wet gas test data. Although general similarities in the PLR shape for increasing liquid content were noted, critical differences are also examined, with the improvements needed in particular for multi-liquid wet gas systems.
 \end{abstract}
 
 
 \section{Introduction}
-\IEEEPARstart{V}{enturi} flow meters are an industrially proven technology for the metering of multiphase wet gas flow. Although Venturi wet gas correction methods originally borrowed from orifice plate corrections (for example, those by Murdock \cite{Murdock1962} and Chisholm \cite{Chisholm1977}), de Leeuw \cite{DeLeeuw1997} provided an ``empirical correlation...which accurately predicts the effect of the liquid phase on Venturi meter readings in wet gas horizontal flow.''  However, to provide this correction to the gas rate, knowledge of the liquid rate is required, expressed through the Lockhart-Martinelli parameter, \acrshort{X}.\\
+\IEEEPARstart{V}{enturi} flow meters are an industrially proven technology for the metering of multiphase wet gas flow. Although Venturi wet gas correction methods originally borrowed from orifice plate corrections (for example, those by Murdock \cite{Murdock1962} and Chisholm \cite{Chisholm1977}), de Leeuw \cite{DeLeeuw1997} provided an ``empirical correlation...which accurately predicts the effect of the liquid phase on Venturi meter readings in wet gas horizontal flow.''  However, to utilize this correction to the gas rate, prior knowledge of the liquid rate is required, typically expressed through the Lockhart-Martinelli parameter, \acrshort{X}.\\
 
-Within de Leeuw's paper \cite{DeLeeuw1997}, he indicates that there is ``potential for the pressure loss measurement...to use it as a means to determine the liquid content of the flow, from which the overreacting factor can be determined accordingly. In essence this would form a simple two-phase [i.e. wet gas] flow meter.''  The \acrlong{PLR} is a ratio of the overall difference in the pressure across the Venturi meter, $DP_{t}$ to that of the normal Venturi differential pressure, $DP_{v}$ :
+Within de Leeuw's paper \cite{DeLeeuw1997}, he indicates that there is ``potential for the pressure loss measurement...to use it as a means to determine the liquid content of the flow, from which the overreacting factor can be determined accordingly. In essence this would form a simple two-phase [i.e. wet gas] flow meter.''  The \acrlong{PLR} (PLR) is the overall difference in the pressure across the Venturi meter, $DP_{t}$ to that of the normal Venturi differential pressure, $DP_{v}$ :
 \begin{equation}
     PLR = \frac{DP_{t}}{DP_{v}}
 \end{equation}
 
-
-This paper only uses data for the standard design for machined Venturi meters as given in ISO 5167-4:2003 \cite{2003ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$; however, the standard included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have nominally $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
-\todo[inline]{Normal wet gas Venturi reference...?}
+This paper only uses data for the standard design for horizontal machined Venturi meters as given in ISO 5167-4:2003 \cite{2003ISOTubes}, whilst being suitable for wet gas (therefore not using annular chambers, pieziometer rings or triple-t tapping arrangements, or an upstream flow conditioner, as noted in section 11.1 of \cite{Reader-Harris2015}).  As such, the included angle of the inlet cone is $21^{\circ} \pm 1^{\circ}$; however, the standard included angle of the outlet cone may be set between $7^{\circ}$ and $15^{\circ}$.  Whereas the data from which the equations for ISO/TR 11583:2012 are drawn only allows for nominally $7^{\circ}$ outlet cones, the Dualstream 1 meters from Solartron ISA only have nominally $15^{\circ}$ outlet cones; overall this latter are shorter, but will have a different pressure recovery envelope.
 
 \section{Related Work}
-As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potential for the \acrshort{PLR} to determine the liquid content of the wet gas flow, but was unable to provide an equation to formalize this relationship.  
+As has been mentioned above, de Leeuw \cite{DeLeeuw1997} recognized the potential for the \acrshort{PLR} to determine the liquid content of the wet gas flow, but was unable to provide an equation to formalize this relationship.
 
-Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction term, \acrshort{WGC}, through using an extensive data set, based on extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for the discharge coefficient and the $n$ parameter.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these equations are summarized in Appendix \ref{11583 Equations} below. Reader-Harris and Graham's work resulted in an ISO technical report, ISO/TR~11583:2012~\cite{2003ISOTubes}, which is also expanded upon in \cite{Reader-Harris2015}.  However, it is the calculation methods documented in the ISO report that are evaluated in this paper.
+Direct modelling of the flow through a Venturi has been attempted, such as that by van Maanen and de Leeuw \cite{VanMaanen2016}, or by Yu et al. \cite{Yu2015}.  Whilst they provide useful information on the factors that influence wet gas flow through a Venturi, they lack (or do not disclose) a correlation or model for the meter that could be readily implemented to measure the multiphase wet gas flow.
 
-ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted in this work that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and \acrshort{beta} values than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water-to-liquid ratio on  \acrshort{PLR} is not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
+However, Reader-Harris and Graham \cite{Reader-Harris2009} derived a new correlation for the wet gas correction term, \acrshort{WGC}, through using an extensive data set, extending the form used by Chisholm \cite{Chisholm1977} and de Leeuw \cite{DeLeeuw1997} through more complicated formulations for the discharge coefficient and the $n$ parameter.  An algorithmic relationship for the \acrshort{PLR} was also provided from a subset of this data (mostly 4" Venturi).  Both of these sets of equations are summarized in Appendix \ref{11583 Equations} below. Reader-Harris and Graham's work resulted in an ISO technical report, ISO/TR~11583:2012~\cite{2003ISOTubes}, which is also expanded upon in \cite{Reader-Harris2015}.  It is predominantly the calculation methods documented in the ISO report that are evaluated in this paper.
 
-However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven2018OrificeProblem} noting that the \acrshort{PLR} could be a ``solution to the `Ill-posed' problem'', as a ``...wet gas flow’s liquid loading can be predicted via its relationship with the Venturi meter’s measureable Pressure Loss Ratio''.  Similarly, Pinguet \cite{Pinguet2018ExtensiveConditions} notes the use of the recovery pressure measurement as technique for determining the liquid loading, referencing the commercial implementation of Solartron ISA's Dualstream meters.
+ISO/TR~11583:2012 received criticism from industry, including from de Leeuw, Steven and van Maanen \cite{DeLeeuw2011}, who noted that the \acrlong{PLR} for dry gas conditions does not well fit data at a wider range of Venturi size and \acrshort{beta} values than that used to develop the equations (but within the limits given in the standard).  Similarly, the effects of the water-to-liquid ratio on  \acrshort{PLR} are not taken into account, due in part to the lack of 3-phase data (simultaneous flow of gas, condensate and water) within the ISO/TR~11583:2012 data set: ``All aspects above lead to the conclusion that the statements made on the pressure loss ratio in the ISO report are incomplete and in some aspects incorrect.'' 
+
+However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven2018OrificeProblem} subsequently noting that the \acrshort{PLR} could be a ``solution to the `Ill-posed' problem'', as a ``...wet gas flow’s liquid loading can be predicted via its relationship with the Venturi meter’s measureable Pressure Loss Ratio''.  Similarly, Pinguet \cite{Pinguet2018ExtensiveConditions} notes the use of the recovery pressure measurement as technique for determining the liquid loading, referencing the commercial implementation of Solartron ISA's Dualstream meters.
 
 \section{Problem}
 
-Whilst ISO/TR~11583:2012 is publicly available, limited literature has critically reviewed the form and accuracy of the equations presented in this ISO Technical Report for the use of \acrlong{PLR} with Venturi meters.  Some of the criticisms by de Leeuw, Steven and van Maanen \cite{DeLeeuw2011} are considered, including whether the equations in the ISO Technical Report have the right form and the key characteristics.
+Whilst there is limited literature critically reviewing the form and accuracy of the equations presented in ISO/TR~11583:2012 for the use of \acrlong{PLR} with Venturi meters, a number of the comments by de Leeuw, Steven and van Maanen \cite{DeLeeuw2011} are particularly pertinent.  Those that are considered in this paper are listed below, specifically to determine whether the equations in the ISO Technical Report have the right form and the key characteristics.
 
-Firstly, the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios. From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y=0$) is only proportional to beta; there are no terms for the meter size, gas-to-liquid density ratio, or gas velocity (which the gas densiometric Froude number, \acrshort{Frg}, represents in a non-dimensional manner).
+\subsection{Evaluating the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios.}
+From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y=0$) is only proportional to beta; there are no terms for the meter size, gas-to-liquid density ratio, or gas velocity (which the gas densiometric Froude number, \acrshort{Frg}, represents in a non-dimensional manner).
 
-Secondly, these equations define the curves for \acrshort{PLR} as a plateauing exponential form for increasing liquid content, as given by the Lockhart-Martinelli number, $X$, (for constant density ratio, velocity and water-to-liquid ratio).
+\subsection{Evaluating the shape of the PLR equations}
+Equations \ref{eq:11583_Ymax} and \ref{eq:11583_Y/Ymax} define the curves for \acrshort{PLR} as a plateauing exponential form for increasing liquid content, as given by the Lockhart-Martinelli number, $X$, (for constant density ratio, velocity and water-to-liquid ratio).
 
-Thirdly, multiphase wet gas (the flow of gas, condensate and water together) is only represented through the $H$ parameter.  de Leeuw, Steven and van Maanen did not consider this adaquate, noting, ``...the ISO report correlations neither align with other available experimental results nor describe realistic situations in which the liquid phase consists of condensate and water.''
+\subsection{Evaluating multiphase wet gas performance}
+Multiphase wet gas (the flow of gas, condensate and water together) is only represented through the $H$ parameter.  de Leeuw, Steven and van Maanen did not consider this adaquate, noting, ``...the ISO report correlations neither align with other available experimental results nor describe realistic situations in which the liquid phase consists of condensate and water.''
 
 \section{Solution}
 
@@ -496,19 +499,18 @@ It is noted that in previous work \cite{Collins2015} the following formulation f
 H = 1.0 + 0.35 \frac{Q_{mw}}{Q_{ml}}    
 \end{equation}
 
-This formula correctly implies that none of the data in the Solartron ISA database is for steam flow, and assumes a nominal straight line fit between the liquid being all hydrocarbon (where the water mass flow rate $Q_{mw}$ is zero) and all water, as was suggested by Graham in the paper presentation at the North Sea Flow Measurement conference.  However, Reader-Harris has more recently presented an alternative formulation \cite{Reader-Harris2017} based on more data:
+This formula correctly implies that none of the data in the Solartron ISA database is for steam flow, and assumes a nominal straight line fit between the liquid being all hydrocarbon (where the water mass flow rate $Q_{mw}$ is zero) and all water, as was suggested by Graham in the paper presentation at the North Sea Flow Measurement conference.  However, Reader-Harris has more recently presented an alternative formulation \cite{Reader-Harris2017} based on evaluating futher three-phase data:
 
 \begin{equation}
 H = min \left( 1.0 + 0.8 \frac{Q_{vw}}{Q_{vl}}, 1.35 \right)    
 \end{equation}
 
-This uses the water-to-liquid volume ratio (WLR), and implies that the liquid fully behaves like water where $WLR~\geq~0.4375$, where this is attributed to the liquid mixture in this case having the surface tension of water.
-
+This uses the water-to-liquid volume ratio (WLR), and implies that the liquid fully behaves like water where $WLR~\geq~0.4375$, where this is attributed to the liquid mixture in this case having the surface tension of water.  Although this is a change from previous work, and is not within the ISO/TR~11583:2012 document, as the most recent suggestion of the paper authors, we have used this form within this paper.
 
 \section{Analysis}
 
 \subsection{Initial assessment} \label{ssect:Initial}
-Despite the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}. As the ISO equations for PLR are based only on 4" meters (with beta ratios of 0.4, 0.6 and 0.75 - see 11.3.2 in \cite{Reader-Harris2015}), this formulation is therefore unable to allow for this significant factor. 
+Whilst noting the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}. As the ISO equations for PLR are based only on 4" meters (with beta ratios of 0.4, 0.6 and 0.75 - see 11.3.2 in \cite{Reader-Harris2015}), this formulation is therefore unable to allow for this significant factor. 
 
 \begin{figure}[h]
 \centering
@@ -517,7 +519,7 @@ Despite the key differences between the Venturi meters used for ISO/TR~11583:201
 \label{fig:PLR2}
 \end{figure}
 
-As can also be seen in \ref{fig:PLRnaive}, a naive refitting of the ISO/TR~11583:2012 parameters to the Solartron ISA wet gas database, though resulting in a tighter correlation to the red line, still exhibits a dependence upon the meter size.  This is most clearly seen by comparing the dark blue points of the smallest meter which tend towards the lower right, with those of the largest meter which tend to upper left - a clear trend in meter size, despite fitting this particular dataset.
+As can also be seen in \ref{fig:PLRnaive}, a naive refitting of the ISO/TR~11583:2012 parameters to the Solartron ISA wet gas database, though resulting in a tighter correlation to the red line, still exhibits a dependence upon the meter size.  This is most clearly seen by comparing the dark blue points of the smallest meter (which tend towards the lower right of the chart), with those of the largest meter (which tend to upper left) - a clear trend in meter size, despite fitting to this specific dataset.
 
 \begin{figure}[h]
 \centering
@@ -526,7 +528,7 @@ As can also be seen in \ref{fig:PLRnaive}, a naive refitting of the ISO/TR~11583
 \label{fig:PLRnaive}
 \end{figure}
 
-The natural conclusion of these analyses is that the formulation in the ISO Technical Report is unable to adequately represent the effect of meter size.  However, the proviso to that is the limitations of the Solartron ISA database, as it is possible - although unlikely - that with a downstream tapping at $6D$ this formulation would work.
+The natural conclusion of these analyses is that the formulation in the ISO Technical Report is unable to adequately represent the effect of meter size.  However, the proviso to that is the limitations of the Solartron ISA database, as it is possible - although considered unlikely - that with a downstream tapping at $6D$ and a lesser divergent cone angle this formulation would just work.
 
 \subsection{Dry gas calibration data} 
 The \acrshort{PLR} for dry gas data, according to ISO/TR~11583:2012, should only be proportional to beta, as per equation \ref{eq:11583_Y}.  The Solartron ISA database was used to investigate this assumption, with 383 dry gas points taken as part of wet gas tests available for analysis.  
@@ -547,9 +549,8 @@ Figures \ref{fig:4inchDry} and \ref{fig:6inchDry}, where each chart are at a fix
 \label{fig:6inchDry}
 \end{figure}
 
-
 \subsection{Wet gas calibration data}  % \todo[inline]{Meter (by size and beta) review}
-Expanding upon the initial analysis of section \ref{ssect:Initial} above to compare the wet gas calibration data from the Solartron ISA database with the ISO/TR~11583:2012 equations for a given test, it would be hoped that the generic algorithmic shape given by the standard is comparable to that from the data.
+Expanding upon the initial analysis above to compare the wet gas calibration data from the Solartron ISA database with the ISO/TR~11583:2012 equations for individual wet gas tests, it was assumed that the generic algorithmic shape given by the standard is comparable to that from the data.
 
 For instance, figure \ref{fig:4inch0.55Wet} and \ref{fig:10inch0.55Wet} compares a representative sample of nominal 4" $0.55\beta$ and nominal 10" $0.55\beta$ \acrshort{PLR} data with the ISO/TR~11583:2012 calculations (for approximately constant gas density and gas flow rates).  Although there may initially appear to be significant differences, by linearly scaling the ISO results (as shown by the magenta values and line) it is apparent that the data is more readily comparable.  For greater alignment, a more complex scaling function would therefore be required.  As it stands, however, this data would appear to support Solartron ISA's belief that a PLR using a downstream tapping at $0D$ conveys much the same information as that of one at the "standard" $6D$ downstream of the Venturi's divergent cone.
 
@@ -567,7 +568,7 @@ For instance, figure \ref{fig:4inch0.55Wet} and \ref{fig:10inch0.55Wet} compares
 \label{fig:10inch0.55Wet}
 \end{figure}
 
-Similarly, by evaluating data from a nominal 6" $0.55\beta$ at one gas density and gas flow rate for a number of water liquid ratios, as shown in figure \ref{fig:6inch0.55Wet}, a similar comparison between the PLR data and the ISO results are shown. Similar scaling is possible to provide greater alignment, although this is not shown in this figure.  However, it is apparent from the figure that the ISO/TR~11583:2012 formulation is not as good at the relative positioning of the intermediate water-liquid ratio data, as per the criticisms of \cite{DeLeeuw2011}.
+In the same manner, by evaluating data from a nominal 6" $0.55\beta$ at one gas density and gas flow rate for a number of water liquid ratios, as shown in figure \ref{fig:6inch0.55Wet}, a similar comparison between the PLR data and the ISO results are shown. Comparable scaling is possible to provide greater alignment, although this is not shown in this figure.  However, it is apparent from the figure that the ISO/TR~11583:2012 formulation is not as good at the relative positioning of the intermediate water-liquid ratio data, as per the criticisms of \cite{DeLeeuw2011}.
 
 \begin{figure}[h]
 \centering
@@ -576,13 +577,9 @@ Similarly, by evaluating data from a nominal 6" $0.55\beta$ at one gas density a
 \label{fig:6inch0.55Wet}
 \end{figure}
 
-
-
-
-
 \section{Conclusions}
 
-Whilst the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} is acknowledged as an initial step to a complete formulation for determining multiphase wet gas flow rates by using the Venturi \acrfull{PLR}, this paper indicates that further work is required to provide a generalized implementation.
+Whilst acknowledging the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} as an initial step toeards a comprehensive formulation for determining multiphase wet gas flow rates by using the Venturi \acrfull{PLR}, this paper indicates that further work is required to provide a truly generalized implementation.
 
 Although the Solartron ISA wet gas calibration database uses Venturi meters with a greater outlet cone angle and an alternative total DP tapping location, this data has indicated a number of potential concerns.
 
@@ -692,10 +689,12 @@ Limits of use: \\
 \end{equation}
 
 \begin{equation}
+\label{eq:11583_Ymax}
     Y_{max} = 0.61 exp \left( -11 \left( \frac{\rho_{1,gas}}{\rho_{liquid}} \right) - 0.045 \frac{Fr_{gas}}{H} \right)
 \end{equation}
 
 \begin{equation}
+\label{eq:11583_Y/Ymax}
     \frac{Y}{Y_{max}} = 1 - exp \left(-35 X^{0.75} e^{-0.28 \frac{Fr_{gas}}{H}} \right)
 \end{equation}
 \\
