@@ -465,7 +465,7 @@ However, the potential for the \acrlong{PLR} remains, with Steven \cite{Steven20
 
 \section{Problem}
 
-Whilst there is limited literature critically reviewing the form and accuracy of the equations presented in ISO/TR~11583:2012 for the use of \acrlong{PLR} with Venturi meters, a number of the comments by de Leeuw, Steven and van Maanen \cite{DeLeeuw2011} are particularly pertinent.  Those that are considered in this paper are listed below, specifically to determine whether the equations in the ISO Technical Report have the right form and the key characteristics.
+Whilst there is limited literature critically reviewing the form and accuracy of the equations presented in ISO/TR~11583:2012 for the use of \acrlong{PLR} with Venturi meters, a number of the comments by de Leeuw, Steven and van Maanen in section 8 of \cite{DeLeeuw2011} are particularly pertinent.  Those that are considered in this paper are listed below, specifically to determine whether the equations in the ISO Technical Report have the right form and the key characteristics.
 
 \subsection{Evaluating the dry gas performance of \acrshort{PLR} for different flow meter sizes and beta ratios.}
 From equation \ref{eq:11583_Y}, the measured \acrshort{PLR}, $\frac{\Delta \omega}{\Delta p}$, at dry gas conditions (when $Y=0$) is only proportional to beta; there are no terms for the meter size, gas-to-liquid density ratio, or gas velocity (which the gas densiometric Froude number, \acrshort{Frg}, represents in a non-dimensional manner).
@@ -475,6 +475,9 @@ Equations \ref{eq:11583_Ymax} and \ref{eq:11583_Y/Ymax} define the curves for \a
 
 \subsection{Evaluating multiphase wet gas performance}
 Multiphase wet gas (the flow of gas, condensate and water together) is only represented through the $H$ parameter.  de Leeuw, Steven and van Maanen did not consider this adaquate, noting, ``...the ISO report correlations neither align with other available experimental results nor describe realistic situations in which the liquid phase consists of condensate and water.''
+
+\subsection{Sensitivity to pipe diameter at downstream tapping}
+de Leeuw, Steven and van Maanen noted that ``...a demonstrated sensitivity of the pressure loss to the actual internal diameter of the pipe section where the pressure loss tapping is located...where the actual internal diameters of flow lines vary, this easily leads to significant changes in the total pressure loss ratio.''  It is therefore pertinent to confirm the diameter at the downstream tapping of the meters in the Solartron ISA database. 
 
 \section{Solution}
 
@@ -509,7 +512,6 @@ This uses the water-to-liquid volume ratio (WLR), and implies that the liquid fu
 
 \section{Analysis}
 
-\subsection{Initial assessment} \label{ssect:Initial}
 Whilst noting the key differences between the Venturi meters used for ISO/TR~11583:2012 and those of the Solartron ISA database (notably, the divergent cone angle and the distance of the downstream tapping from the exit of the divergent cone), figure \ref{fig:PLR2} provides an initial visual assessment of the performance of the ISO algorithms for this dataset (the red line indicating where the measured PLR equals that calculated by the ISO algorithms). This initial evaluation demonstrates that there appears to be a greater dependence upon the meter size - a parameter that is not explicitly used in the ISO formulation for \acrshort{PLR}. As the ISO equations for PLR are based only on 4" meters (with beta ratios of 0.4, 0.6 and 0.75 - see 11.3.2 in \cite{Reader-Harris2015}), this formulation is therefore unable to allow for this significant factor. 
 
 \begin{figure}[h]
@@ -549,7 +551,7 @@ Figures \ref{fig:4inchDry} and \ref{fig:6inchDry}, where each chart are at a fix
 \label{fig:6inchDry}
 \end{figure}
 
-\subsection{Wet gas calibration data}  % \todo[inline]{Meter (by size and beta) review}
+\subsection{Shape of PLR data}
 Expanding upon the initial analysis above to compare the wet gas calibration data from the Solartron ISA database with the ISO/TR~11583:2012 equations for individual wet gas tests, it was assumed that the generic algorithmic shape given by the standard is comparable to that from the data.
 
 For instance, figure \ref{fig:4inch0.55Wet} and \ref{fig:10inch0.55Wet} compares a representative sample of nominal 4" $0.55\beta$ and nominal 10" $0.55\beta$ \acrshort{PLR} data with the ISO/TR~11583:2012 calculations (for approximately constant gas density and gas flow rates).  Although there may initially appear to be significant differences, by linearly scaling the ISO results (as shown by the magenta values and line) it is apparent that the data is more readily comparable.  For greater alignment, a more complex scaling function would therefore be required.  As it stands, however, this data would appear to support Solartron ISA's belief that a PLR using a downstream tapping at $0D$ conveys much the same information as that of one at the "standard" $6D$ downstream of the Venturi's divergent cone.
@@ -568,7 +570,15 @@ For instance, figure \ref{fig:4inch0.55Wet} and \ref{fig:10inch0.55Wet} compares
 \label{fig:10inch0.55Wet}
 \end{figure}
 
-In the same manner, by evaluating data from a nominal 6" $0.55\beta$ at one gas density and gas flow rate for a number of water liquid ratios, as shown in figure \ref{fig:6inch0.55Wet}, a similar comparison between the PLR data and the ISO results are shown. Comparable scaling is possible to provide greater alignment, although this is not shown in this figure.  However, it is apparent from the figure that the ISO/TR~11583:2012 formulation is not as good at the relative positioning of the intermediate water-liquid ratio data, as per the criticisms of \cite{DeLeeuw2011}.
+\subsection{Multiphase wet gas data}
+In the same manner, by evaluating data from a nominal 6" $0.55\beta$ at one gas density and gas flow rate for a number of water liquid ratios, as shown in figures \ref{fig:4inch0.55Wet2} and \ref{fig:6inch0.55Wet}, a similar comparison between the PLR data and the ISO results are shown. Comparable scaling is possible to provide greater alignment, although this is not shown in this figure.  However, it is apparent from figure \ref{fig:6inch0.55Wet} that the ISO/TR~11583:2012 formulation is not as good at the relative positioning of the intermediate water-liquid ratio data, as per the criticisms of \cite{DeLeeuw2011}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=3.4in]{{"4inch 0.55 PLR2"}.png}
+\caption[]{ Wet gas data for 4" $0.55\beta$ Venturi, comparing PLR data at $0D$ with ISO/TR~11583:2012 values at $6D$ at different WLR }
+\label{fig:4inch0.55Wet2}
+\end{figure}
 
 \begin{figure}[h]
 \centering
@@ -577,9 +587,13 @@ In the same manner, by evaluating data from a nominal 6" $0.55\beta$ at one gas 
 \label{fig:6inch0.55Wet}
 \end{figure}
 
+\subsection{Pipe diameter at downstream tapping}
+As the downstream tapping location of the Dualstream 1 meter is directly at the end of the divergent cone, the diameter is tightly controlled to be equal to the pipe diameter at the upstream tapping, confirmed via metrological testing.  This is a significant additional benefit to these meters in distinction to Venturi with the downstream tapping at $6D$, where there may be a fiscal reason for welding pipe of only nominally the same - or potentially even a different - diameter.
+
+
 \section{Conclusions}
 
-Whilst acknowledging the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} as an initial step toeards a comprehensive formulation for determining multiphase wet gas flow rates by using the Venturi \acrfull{PLR}, this paper indicates that further work is required to provide a truly generalized implementation.
+Whilst acknowledging the work of ISO/TR~11583:2012 \cite{2012ISO/TRConduits} as an initial step towards a comprehensive formulation for determining multiphase wet gas flow rates by using the Venturi \acrfull{PLR}, this paper indicates that further work is required to provide a truly generalized implementation.
 
 Although the Solartron ISA wet gas calibration database uses Venturi meters with a greater outlet cone angle and an alternative total DP tapping location, this data has indicated a number of potential concerns.
 
